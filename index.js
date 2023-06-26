@@ -1,19 +1,18 @@
-const express = require('express');
-const app = express();
-const miRuta = require('./src/routes/prueba.routes');
-const dotenv = require('dotenv');
+const express = require('express'); // Importa el módulo 'express'
+const app = express(); // Crea una instancia de la aplicación Express
 
-dotenv.config();
+const miRuta = require('./src/routes/prueba.routes'); // Importa el archivo de rutas
 
-const PORT = process.env.PORT || 3000;
+const dotenv = require('dotenv'); // Importa el módulo 'dotenv'
+dotenv.config(); // Carga las variables de entorno desde el archivo '.env'
 
-app.use(express.json());
-app.use('/api', miRuta);
+const PORT = process.env.PORT || 3000; // Define el número de puerto
 
-app.listen(PORT, () => {
-    console.log('server on port', PORT);
-})
+app.use(express.json()); // Configura la aplicación para analizar solicitudes JSON
 
+app.use('/api', miRuta); // Maneja las solicitudes que comiencen con '/api' usando las rutas definidas en 'prueba.routes.js'
+
+app.listen(PORT, () => { console.log('server on port', PORT); }) // Inicia el servidor y muestra un mensaje en la consola
 
 
 

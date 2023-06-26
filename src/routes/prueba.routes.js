@@ -1,23 +1,17 @@
-const router = require('express').Router();
-const metodos = require('../controllers/usuarios.controllers');
+const router = require('express').Router(); // Crea un enrutador utilizando el módulo 'express'
 
-const {getUsers, crearUsuario} = metodos
+const metodos = require('../controllers/usuarios.controllers'); // Importa el archivo de controladores de usuarios
 
+const { getUsers, crearUsuario } = metodos; // Extrae las funciones getUsers y crearUsuario del objeto metodos
 
-//Nos lista todos los usuarios
-router.get('/usuarios', getUsers);
+router.get('/usuarios', getUsers); // Define una ruta GET '/usuarios' que utiliza la función getUsers
 
-//Nos lista un usuario por su id
-router.get('/usuario/:id', );
+router.get('/usuario/:id',); // Define una ruta GET '/usuario/:id' (requiere completarse con una función de controlador)
 
-//Nos crea un usuario
-router.post('/usuarios', crearUsuario);
+router.post('/usuarios', crearUsuario); // Define una ruta POST '/usuarios' que utiliza la función crearUsuario
 
-//Nos actualiza un usuario por su id
-router.put('/usuarios/:id', );
+router.put('/usuarios/:id',); // Define una ruta PUT '/usuarios/:id' (requiere completarse con una función de controlador)
 
-//Nos elimina un usuario por su id
-router.delete('/usuario/:id', );
+router.delete('/usuario/:id',); // Define una ruta DELETE '/usuario/:id' (requiere completarse con una función de controlador)
 
-
-module.exports = router;
+module.exports = router; // Exporta el enrutador para ser utilizado en otros archivos
