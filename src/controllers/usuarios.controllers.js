@@ -1,14 +1,19 @@
+const User = require('../models/usuarios')
+
 const metodos = {} // Crea un objeto vacío llamado 'metodos'
 
-metodos.getUsers = (req, res) => { // Define una función 'getUsers' en el objeto 'metodos'
-    const users = {
-        nombre: 'Juan',
-        apellido: 'Perez',
-        edad: 25
-    } // Crea un objeto 'users' con información de usuarios
-
+metodos.getUsers = async(req, res) => { // Define una función 'getUsers' en el objeto 'metodos'
+    // const users = {
+    //     nombre: 'Juan',
+    //     apellido: 'Perez',
+    //     edad: 25
+    // } // Crea un objeto 'users' con información de usuarios
+    const users = await User.findByPk();
+    console.log(users);
     res.status(200).json({ users }); // Devuelve una respuesta con el objeto 'users' en formato JSON
 }
+
+
 
 metodos.crearUsuario = (req, res) => { // Define una función 'crearUsuario' en el objeto 'metodos'
     const { nombre, apellido, edad } = req.body; // Obtiene datos del cuerpo de la solicitud

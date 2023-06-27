@@ -1,22 +1,32 @@
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 
+// Crear una instancia de Sequelize con los detalles de la base de datos
 const sequelize = new Sequelize('mydb', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
 
-  });
+});
 
+// Función para probar la conexión y sincronizar los modelos
 const probarConexion = async () => {
     try {
+        // Autenticar la conexión a la base de datos
         await sequelize.authenticate();
+
+        // Sincronizar los modelos con la base de datos
         await sequelize.sync();
+
         console.log('Connection has been established successfully.');
-      } catch (error) {
+    } catch (error) {
         console.error('Unable to connect to the database:', error);
-      }
+    }
 }
 
-module.exports = {sequelize, probarConexion}
+// Exportar la instancia de Sequelize y la función de prueba de conexión
+module.exports = { sequelize, probarConexion, DataTypes };
+
+
+
 
 
 
