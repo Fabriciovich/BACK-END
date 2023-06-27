@@ -15,3 +15,4 @@ router.put('/usuarios/:id',); // Define una ruta PUT '/usuarios/:id' (requiere c
 router.delete('/usuario/:id',); // Define una ruta DELETE '/usuario/:id' (requiere completarse con una función de controlador)
 
 module.exports = router; // Exporta el enrutador para ser utilizado en otros archivos
+
