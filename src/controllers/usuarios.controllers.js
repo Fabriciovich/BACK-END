@@ -1,29 +1,33 @@
-const User = require('../models/usuarios')
+// Importar el modelo User desde el archivo '../models/usuarios'
+const User = require('../models/usuarios');
 
-const metodos = {} // Crea un objeto vacío llamado 'metodos'
+// Crea un objeto vacío llamado 'metodos'
+const metodos = {};
 
-metodos.getUsers = async(req, res) => { // Define una función 'getUsers' en el objeto 'metodos'
-    // const users = {
-    //     nombre: 'Juan',
-    //     apellido: 'Perez',
-    //     edad: 25
-    // } // Crea un objeto 'users' con información de usuarios
+// Define una función 'getUsers' en el objeto 'metodos'
+metodos.getUsers = async (req, res) => {
+    // Obtiene los usuarios mediante la función findByPk() del modelo User
     const users = await User.findByPk();
     console.log(users);
-    res.status(200).json({ users }); // Devuelve una respuesta con el objeto 'users' en formato JSON
-}
+    // Devuelve una respuesta con el objeto 'users' en formato JSON y código de estado 200 (éxito)
+    res.status(200).json({ users });
+};
 
+// Define una función 'crearUsuario' en el objeto 'metodos'
+metodos.crearUsuario = (req, res) => {
+    // Obtiene datos del cuerpo de la solicitud (nombre, apellido, edad)
+    const { nombre, apellido, edad } = req.body;
 
+    // Crea un nuevo objeto con los datos recibidos
+    const newUser = { nombre, apellido, edad };
 
-metodos.crearUsuario = (req, res) => { // Define una función 'crearUsuario' en el objeto 'metodos'
-    const { nombre, apellido, edad } = req.body; // Obtiene datos del cuerpo de la solicitud
-
-    const newUser = { nombre, apellido, edad }; // Crea un nuevo objeto con los datos recibidos
-
-    res.status(200).json({ // Devuelve una respuesta con un mensaje y el nuevo usuario en formato JSON
+    // Devuelve una respuesta con un mensaje y el nuevo usuario en formato JSON y código de estado 200 (éxito)
+    res.status(200).json({
         msg: 'Usuario creado Correctamente',
         newUser
     });
-}
+};
 
-module.exports = metodos; // Exporta el objeto 'metodos' para ser utilizado en otros archivos
+// Exporta el objeto 'metodos' para ser utilizado en otros archivos
+module.exports = metodos;
+

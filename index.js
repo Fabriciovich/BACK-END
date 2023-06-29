@@ -1,21 +1,38 @@
-const express = require('express'); // Importa el módulo 'express'
-const app = express(); // Crea una instancia de la aplicación Express
+// Importa el módulo 'express'
+const express = require('express');
 
-const miRuta = require('./src/routes/prueba.routes'); // Importa el archivo de rutas
+// Crea una instancia de la aplicación Express
+const app = express();
 
-const dotenv = require('dotenv'); // Importa el módulo 'dotenv'
+// Importa el archivo de rutas desde './src/routes/prueba.routes'
+const miRuta = require('./src/routes/prueba.routes');
+
+// Importa el módulo 'dotenv'
+const dotenv = require('dotenv');
+
+// Importa la función 'probarConexion' desde './src/database/db'
 const { probarConexion } = require('./src/database/db');
-dotenv.config(); // Carga las variables de entorno desde el archivo '.env'
 
-const PORT = process.env.PORT || 3000; // Define el número de puerto
+// Carga las variables de entorno desde el archivo '.env'
+dotenv.config();
 
-app.use(express.json()); // Configura la aplicación para analizar solicitudes JSON
+// Define el número de puerto, utiliza el valor de la variable de entorno PORT si está definida, de lo contrario, usa el puerto 3000
+const PORT = process.env.PORT || 3000;
 
-app.use('/api', miRuta); // Maneja las solicitudes que comiencen con '/api' usando las rutas definidas en 'prueba.routes.js'
+// Configura la aplicación para analizar solicitudes JSON
+app.use(express.json());
 
+// Maneja las solicitudes que comiencen con '/api' usando las rutas definidas en 'prueba.routes.js'
+app.use('/api', miRuta);
+
+// Llama a la función 'probarConexion' para probar la conexión a la base de datos
 probarConexion();
 
-app.listen(PORT, () => { console.log('server on port', PORT); }) // Inicia el servidor y muestra un mensaje en la consola
+// Inicia el servidor y muestra un mensaje en la consola indicando el número de puerto
+app.listen(PORT, () => {
+    console.log('server on port', PORT);
+});
+
 
 
 

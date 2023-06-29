@@ -1,10 +1,10 @@
+// Importar el objeto Sequelize y DataTypes desde el módulo 'sequelize'
 const { Sequelize, DataTypes } = require('sequelize');
 
 // Crear una instancia de Sequelize con los detalles de la base de datos
 const sequelize = new Sequelize('mydb', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
-
 });
 
 // Función para probar la conexión y sincronizar los modelos
@@ -22,8 +22,9 @@ const probarConexion = async () => {
     }
 }
 
-// Exportar la instancia de Sequelize y la función de prueba de conexión
+// Exportar la instancia de Sequelize, la función de prueba de conexión y el objeto DataTypes
 module.exports = { sequelize, probarConexion, DataTypes };
+
 
 
 
